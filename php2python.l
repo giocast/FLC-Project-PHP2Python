@@ -124,6 +124,6 @@ printf("\nFound a bool into <?php ?> %s at line %d and of lenght %d\n",yytexttol
 <phpcodecomments>[^*\n]*	{/* match anything that is not a * */  strcat(more_lines_comment,yytext);}
 <phpcodecomments>"*"+[^*/\n]*	{/* match * symbols not followed by / symbol */ strcat(more_lines_comment,yytext);}
 <phpcodecomments>\n	{/* possible new lines */ strcat(more_lines_comment,"\n");}
-<phpcodecomments>"*"+"/"	{strcat(more_lines_comment,"\"\"\""); if(counter_comments==0){yylval.str = (char *) strdup(more_lines_comment+1);}else{yylval.str = (char *) strdup(more_lines_comment);} counter_comments++; BEGIN(phpcode); return COMMENT; }
+<phpcodecomments>"*"+"/"	{strcat(more_lines_comment,"\"\"\""); if(counter_comments==0){yylval.str = (char *) strdup(more_lines_comment);}else{yylval.str = (char *) strdup(more_lines_comment);} counter_comments++; BEGIN(phpcode); return COMMENT; }
 
 \n	{lines_outside_php++; }
